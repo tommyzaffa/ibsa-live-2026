@@ -85,7 +85,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   padding: max(22px, env(safe-area-inset-top)) clamp(18px, 5vw, 80px) max(18px, env(safe-area-inset-bottom));
 }
 .audience-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-.audience-logo { display: block; height: auto; width: clamp(150px, 16vw, 250px); }
+.audience-logo img { display: block; height: auto; width: clamp(150px, 18vw, 220px); }
+.audience-partners { grid-column: 1 / -1; display: block; width: 100%; max-width: 760px; height: auto; margin-top: 4px; }
+@media (min-width: 1100px) {
+  .audience-logo img { width: clamp(620px, 50vw, 900px); }
+  .audience-partners { display: none; }
+}
 .audience-page .status-pill { color: #e6f6f4; background: rgba(8, 26, 44, .35); }
 
 .live-stage { flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: clamp(28px, 6vh, 70px) 0; }
@@ -144,7 +149,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 /* Phones: what most of the room will hold. */
 @media (max-width: 759px) {
   .audience-shell { padding-left: 18px; padding-right: 18px; }
-  .audience-logo { width: 150px; }
+  .audience-logo img { width: 150px; }
   .audience-page .status-pill { font-size: 10px; padding: 6px 10px; }
   .live-stage { padding: 28px 0 40px; }
   .live-stage h1 { font-size: 14px; }
