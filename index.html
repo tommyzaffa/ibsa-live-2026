@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0b2c3d">
+  <title>Sottotitoli live · Intelligenza artificiale in biomedicina · IBSA Foundation Forum</title>
+  <meta name="description" content="Sottotitoli in italiano in tempo reale del Forum IBSA Foundation «Artificial Intelligence in Biomedicine», Lugano, 6 novembre 2026.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/live.css?v=1">
+</head>
+<body class="audience-page">
+  <main class="audience-shell" id="audience">
+    <header class="audience-head">
+      <picture class="audience-logo">
+        <source media="(min-width: 1100px)" srcset="assets/img/organizers-white.svg">
+        <img src="assets/img/ibsa-foundation-white.svg" alt="IBSA Foundation for scientific research, IDSIA, USI" width="228" height="57">
+      </picture>
+      <span class="status-pill" id="viewer-status" role="status">Collegamento…</span>
+    </header>
+
+    <section class="live-stage" aria-labelledby="talk-title">
+      <span class="eyebrow" id="stage-label">SOTTOTITOLI IN ITALIANO · IN TEMPO REALE</span>
+      <h1 id="talk-title">Intelligenza artificiale in biomedicina</h1>
+      <!-- A fixed four-line window: new words fade in at the bottom, the lines
+           above glide up and fade out at the top, nothing else on the page moves. -->
+      <div class="caption-window" id="caption-window">
+        <p id="captions" class="caption" lang="it" role="log" aria-live="polite" aria-atomic="false">I sottotitoli appariranno quando inizia l’intervento.</p>
+      </div>
+      <p id="viewer-message" class="viewer-message" role="status"></p>
+    </section>
+
+    <footer class="audience-footer">
+      <p class="audience-note"><span id="source-note">Traduzione automatica in tempo reale.</span> <span id="accuracy-note">Nomi ed espressioni possono contenere errori.</span></p>
+      <div class="viewer-controls">
+        <label for="text-size" class="sr-only" id="size-label">Dimensione del testo</label>
+        <select id="text-size"><option value="standard">Testo standard</option><option value="large">Testo grande</option></select>
+        <button type="button" id="fullscreen">Schermo intero</button>
+      </div>
+      <div class="audience-event">
+        <span id="event-line">IBSA Foundation Forum · Lugano, 6 novembre 2026</span>
+        <img src="assets/img/swiss-ai-weeks-white.png" alt="Parte di Swiss AI Weeks" width="640" height="279" decoding="async">
+      </div>
+    </footer>
+  </main>
+
+  <!-- The slide projected in the room at the start and after every break.
+       Opened from the control room as ?qr=1; it also prints on one A4 page. -->
+  <section class="qr-slide" id="qr-slide" hidden aria-label="QR code per i sottotitoli">
+    <div class="qr-slide__text">
+      <img class="qr-slide__logo" src="assets/img/organizers-white.svg" alt="IBSA Foundation for scientific research, IDSIA, USI" width="1368" height="84">
+      <span class="eyebrow">IBSA FOUNDATION FORUM · LUGANO, 6 NOVEMBRE 2026</span>
+      <h1>Intelligenza artificiale<br>in biomedicina</h1>
+      <p class="qr-slide__lead">Segui gli interventi con i <strong>sottotitoli in italiano</strong> in tempo reale, sul tuo telefono.</p>
+      <p class="qr-slide__en" lang="en">Live Italian captions on your phone.</p>
+      <ol class="qr-slide__steps">
+        <li>Inquadra il codice con la fotocamera</li>
+        <li>Apri il link: nessuna app da scaricare</li>
+        <li>Tieni la pagina aperta durante gli interventi</li>
+      </ol>
+    </div>
+    <figure class="qr-slide__code">
+      <div id="qr-slide-code" class="qr-plate"></div>
+      <figcaption id="qr-slide-url"></figcaption>
+    </figure>
+    <img class="qr-slide__swiss" src="assets/img/swiss-ai-weeks-white.png" alt="Parte di Swiss AI Weeks" width="640" height="279">
+  </section>
+
+  <script src="assets/js/config.js?v=1"></script>
+  <script src="assets/js/vendor/supabase-2.113.0.js"></script>
+  <script src="assets/js/live-core.js?v=1"></script>
+  <script src="assets/js/live-viewer.js?v=1"></script>
+</body>
+</html>

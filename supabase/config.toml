@@ -1,0 +1,8 @@
+# Deployed into the Merge Film Festival project (luciaehqndzdeszdktzp), next to
+# its own live-captions function: always pass --project-ref, never `link`.
+project_id = "ibsa-live-2026"
+
+# The control room and the audience are not Supabase users: the function checks
+# its own password and signed session, so the platform's JWT gate stays off.
+[functions.ibsa-live]
+verify_jwt = false

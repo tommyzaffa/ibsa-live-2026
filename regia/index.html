@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#002f6c">
+  <title>Regia sottotitoli · IBSA Foundation Forum</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/live.css?v=1">
+</head>
+<body class="control-page">
+  <main class="control-shell">
+    <header class="masthead">
+      <img src="../assets/img/ibsa-foundation.svg" alt="IBSA Foundation for scientific research" width="228" height="57">
+      <span class="eyebrow">Sottotitoli live · Regia</span>
+    </header>
+
+    <section class="login-card" id="login-panel">
+      <span class="eyebrow">Accesso riservato</span>
+      <h1>Regia dei sottotitoli</h1>
+      <p>Forum «Artificial Intelligence in Biomedicine» · Lugano, 6 novembre 2026. Da qui parte la traduzione che il pubblico legge sul telefono.</p>
+      <form id="login-form">
+        <label for="password">Password della regia</label>
+        <div class="password-field">
+          <input id="password" type="password" autocomplete="current-password" required maxlength="256">
+          <button class="password-eye" type="button" data-reveal aria-pressed="false" aria-label="Mostra la password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M1.9 12S5.6 5.3 12 5.3 22.1 12 22.1 12 18.4 18.7 12 18.7 1.9 12 1.9 12Z"/><circle cx="12" cy="12" r="3.1"/><line class="password-eye__slash" x1="4.2" y1="19.8" x2="19.8" y2="4.2"/></svg></button>
+        </div>
+        <button class="primary" type="submit">Entra in regia <span aria-hidden="true">↗</span></button>
+      </form>
+      <p id="login-error" class="error" role="alert"></p>
+    </section>
+
+    <section id="control-panel" hidden>
+      <div class="section-heading">
+        <div><span class="eyebrow" id="direction-label">INGLESE → ITALIANO</span><h1>Sottotitoli live</h1></div>
+        <button id="logout" class="quiet" type="button">Esci</button>
+      </div>
+      <div class="control-grid">
+        <section class="card settings">
+          <h2>Prepara l’intervento</h2>
+          <label for="session">Intervento in programma</label>
+          <select id="session"></select>
+          <p class="hint">Scegliere un intervento compila titolo, relatore, nomi e traduzioni. Si può modificare tutto prima di avviare.</p>
+
+          <label for="title">Titolo mostrato al pubblico</label>
+          <input id="title" maxlength="120" required>
+
+          <label for="direction">Lingua parlata e lingua dei sottotitoli</label>
+          <select id="direction">
+            <option value="en-it" selected>Inglese → sottotitoli in italiano</option>
+            <option value="it-en">Italiano → sottotitoli in inglese</option>
+          </select>
+
+          <div class="label-row"><label for="device">Ingresso audio</label><button class="text-button" id="devices" type="button">Rileva ingressi</button></div>
+          <select id="device"><option value="">Ingresso predefinito</option></select>
+          <p class="hint">Collega l’uscita del mixer. Ascolta in cuffia e tieni il computer sotto carica.</p>
+
+          <label for="minutes">Interruzione automatica dopo</label>
+          <select id="minutes"><option value="30">30 minuti</option><option value="60">1 ora</option><option value="120" selected>2 ore</option><option value="240">4 ore</option></select>
+
+          <details id="context-details">
+            <summary>Nomi e contesto dell’intervento</summary>
+            <label for="context">Argomento e relatori</label>
+            <textarea id="context" rows="5" maxlength="2500"></textarea>
+            <label for="terms">Parole da riconoscere · una per riga</label>
+            <textarea id="terms" rows="4" maxlength="2000"></textarea>
+            <label for="glossary" id="glossary-label">Traduzioni preferite · inglese = italiano</label>
+            <textarea id="glossary" rows="6" maxlength="3000" placeholder="digital twin = gemello digitale"></textarea>
+            <p class="hint" id="event-hint"></p>
+          </details>
+
+          <div class="actions"><button id="start" class="primary" type="button">Avvia</button><button id="stop" class="danger" type="button" disabled>Ferma</button></div>
+          <p class="hint">L’audio arriva a Soniox solo dopo «Avvia». «Ferma» chiude microfono e traduzione e riporta la pagina del pubblico in attesa del prossimo intervento.</p>
+        </section>
+
+        <div class="monitor-column">
+          <section class="card monitoring">
+            <div class="card-heading"><h2>Monitor della regia</h2><span class="status-pill" id="status" role="status">Pronto</span></div>
+            <div class="stats">
+              <div><span class="eyebrow">Tempo</span><strong id="elapsed">00:00</strong></div>
+              <div><span class="eyebrow">Costo stimato</span><strong id="cost">$0.00</strong></div>
+              <div class="audio-stat"><label class="eyebrow" for="level">Livello audio</label><meter id="level" min="0" max="1" low="0.02" high="0.85" optimum="0.25" value="0"></meter></div>
+            </div>
+            <p class="hint">Stima a 0,18 $/ora, solo audio inviato. L’uso reale è nel pannello di Soniox.</p>
+            <p class="error" id="error" role="alert"></p><p class="notice" id="notice" role="status"></p>
+          </section>
+
+          <section class="caption-preview">
+            <span class="eyebrow" id="translation-label">ITALIANO · QUELLO CHE LEGGE IL PUBBLICO</span>
+            <p id="translation" lang="it">I sottotitoli appariranno qui.</p>
+            <p id="draft" class="draft" lang="it"></p>
+            <span class="eyebrow" id="original-label">TRASCRIZIONE INGLESE</span>
+            <p id="original" class="original" lang="en">In attesa dell’audio.</p>
+          </section>
+
+          <section class="card sharing">
+            <div>
+              <h2>Per il pubblico</h2>
+              <p class="hint">Il pubblico apre questa pagina sul telefono inquadrando il QR code.</p>
+              <div class="actions">
+                <a id="audience-link" class="button" href="../" target="_blank" rel="noopener">Pagina del pubblico ↗</a>
+                <a id="qr-link" class="button" href="../?qr=1" target="_blank" rel="noopener">Proietta il QR ↗</a>
+                <button id="qr-download" class="quiet" type="button">Scarica QR</button>
+                <button id="copy-link" class="quiet" type="button">Copia link</button>
+              </div>
+            </div>
+            <div id="qr" aria-label="QR code della pagina del pubblico"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer class="control-footer">IBSA FOUNDATION FORUM · LUGANO 2026 <span>Sottotitoli automatici · controlla l’audio prima di ogni intervento.</span></footer>
+  </main>
+  <script src="../assets/js/config.js?v=1"></script>
+  <script src="../assets/js/live-core.js?v=1"></script>
+  <script src="../assets/js/programme.js?v=1"></script>
+  <script src="../assets/js/vendor/qr-creator-1.0.0.min.js"></script>
+  <script src="../assets/js/password-eye.js?v=1"></script>
+  <script src="../assets/js/live-control.js?v=1"></script>
+</body>
+</html>

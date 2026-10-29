@@ -1,0 +1,5 @@
+# GitHub Pages publishes the two pages and their assets, never the server code.
+exclude:
+  - supabase
+  - README.md
+  - .gitignore
