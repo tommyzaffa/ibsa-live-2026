@@ -12,7 +12,7 @@
       eventLine: 'IBSA Foundation Forum · Lugano, 6 novembre 2026',
       source: 'Traduzione automatica in tempo reale.', accuracy: 'Nomi ed espressioni possono contenere errori.',
       size: 'Dimensione del testo', standard: 'Testo standard', large: 'Testo grande', fullscreen: 'Schermo intero',
-      idle: 'In attesa del prossimo intervento', ended: 'Intervento terminato', reconnecting: 'Riconnessione…',
+      ended: 'Intervento terminato', reconnecting: 'Riconnessione…',
       connecting: 'Avvio…', live: 'In diretta', preview: 'Anteprima',
       waiting: 'I sottotitoli appariranno quando inizia l’intervento.',
       thanks: 'Grazie per aver seguito l’intervento.',
@@ -23,7 +23,7 @@
       eventLine: 'IBSA Foundation Forum · Lugano, 6 November 2026',
       source: 'Automatically translated in real time.', accuracy: 'Names and expressions may contain errors.',
       size: 'Caption size', standard: 'Standard text', large: 'Large text', fullscreen: 'Full screen',
-      idle: 'Waiting for the next talk', ended: 'Talk ended', reconnecting: 'Reconnecting…',
+      ended: 'Talk ended', reconnecting: 'Reconnecting…',
       connecting: 'Starting…', live: 'Live', preview: 'Preview',
       waiting: 'Captions will appear when the talk begins.',
       thanks: 'Thank you for joining us.',
@@ -123,13 +123,18 @@
     const state = age > 180000 ? 'idle' : snapshot.state;
     const active = ['connecting', 'live', 'reconnecting'].includes(state);
     const waiting = active && (stale || !connected || state === 'reconnecting');
-    const label = state === 'idle' ? words.idle : state === 'ended' ? words.ended :
+    const label = state === 'ended' ? words.ended :
       waiting ? words.reconnecting : state === 'connecting' ? words.connecting : words.live;
     $('talk-title').textContent = state === 'idle' ? words.event : snapshot.title;
-    $('viewer-status').textContent = label;
-    $('viewer-status').dataset.state = waiting ? 'reconnecting' : state;
+    // Between talks the page says nothing about itself: the placeholder line is enough.
+    if (state === 'idle') $('viewer-status').hidden = true;
+    else pill(label, waiting ? 'reconnecting' : state);
     paint(state === 'idle' ? '' : tail(snapshot.translated, 1400), state === 'ended' ? words.thanks : words.waiting);
     $('viewer-message').textContent = waiting ? words.interrupted : '';
+  }
+  function pill(text, state = '') {
+    const status = $('viewer-status');
+    status.textContent = text; status.dataset.state = state; status.hidden = false;
   }
   function accept(value) {
     if (!value || value.id !== room || (snapshot && Number(value.revision) < Number(snapshot.revision))) return;
@@ -160,7 +165,7 @@
       accept({ id: room, revision: ++revision, state: 'live', language: 'it', updated_at: new Date().toISOString(),
         title: 'Giovanna Guidoboni · Quando la fisica incontra i dati: gemelli digitali per la medicina personalizzata',
         translated: said.slice(-1400) });
-      $('viewer-status').textContent = words.preview;
+      pill(words.preview, 'live');
     };
     step(); setInterval(step, 1100);
     void keepAwake();
@@ -176,7 +181,7 @@
       if (error) throw error;
       // No row yet means the control room has never signed in: simply waiting.
       accept(data || { id: room, revision: 0, state: 'idle', language: 'it', title: '', translated: '', updated_at: new Date().toISOString() });
-    } catch (_) { $('viewer-status').textContent = words.reconnecting; }
+    } catch (_) { pill(words.reconnecting, 'reconnecting'); }
     finally { fetching = false; }
   }
   async function boot() {
@@ -204,7 +209,7 @@
       poll = setInterval(() => { if (!connected || (snapshot && Date.now() - Date.parse(snapshot.updated_at) > 30000)) void read(); }, 10000);
       tick = setInterval(render, 2000);
     } catch (_) {
-      $('viewer-status').textContent = words.notConnected;
+      pill(words.notConnected);
       $('viewer-message').textContent = words.unavailable;
       bootTimer = setTimeout(boot, 5000);
     } finally { booting = false; }

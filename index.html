@@ -9,15 +9,12 @@
   <meta name="description" content="Sottotitoli in italiano in tempo reale del Forum IBSA Foundation «Artificial Intelligence in Biomedicine», Lugano, 6 novembre 2026.">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/live.css?v=1">
+  <link rel="stylesheet" href="assets/css/live.css?v=2">
 </head>
 <body class="audience-page">
   <main class="audience-shell" id="audience">
     <header class="audience-head">
-      <picture class="audience-logo">
-        <source media="(min-width: 1100px)" srcset="assets/img/organizers-white.svg">
-        <img src="assets/img/ibsa-foundation-white.svg" alt="IBSA Foundation for scientific research, IDSIA, USI" width="228" height="57">
-      </picture>
+      <img class="audience-logo" src="assets/img/ibsa-foundation-white.svg?v=2" alt="IBSA Foundation for scientific research" width="228" height="57">
       <span class="status-pill" id="viewer-status" role="status">Collegamento…</span>
     </header>
 
@@ -41,7 +38,7 @@
       </div>
       <div class="audience-event">
         <span id="event-line">IBSA Foundation Forum · Lugano, 6 novembre 2026</span>
-        <img src="assets/img/swiss-ai-weeks-white.png" alt="Parte di Swiss AI Weeks" width="640" height="279" decoding="async">
+        <img src="assets/img/swiss-ai-weeks-white.png?v=2" alt="Parte di Swiss AI Weeks" width="1200" height="522" decoding="async">
       </div>
     </footer>
   </main>
@@ -50,7 +47,7 @@
        Opened from the control room as ?qr=1; it also prints on one A4 page. -->
   <section class="qr-slide" id="qr-slide" hidden aria-label="QR code per i sottotitoli">
     <div class="qr-slide__text">
-      <img class="qr-slide__logo" src="assets/img/organizers-white.svg" alt="IBSA Foundation for scientific research, IDSIA, USI" width="1368" height="84">
+      <img class="qr-slide__logo" src="assets/img/ibsa-foundation-white.svg?v=2" alt="IBSA Foundation for scientific research" width="228" height="57">
       <span class="eyebrow">IBSA FOUNDATION FORUM · LUGANO, 6 NOVEMBRE 2026</span>
       <h1>Intelligenza artificiale<br>in biomedicina</h1>
       <p class="qr-slide__lead">Segui gli interventi con i <strong>sottotitoli in italiano</strong> in tempo reale, sul tuo telefono.</p>
@@ -65,12 +62,16 @@
       <div id="qr-slide-code" class="qr-plate"></div>
       <figcaption id="qr-slide-url"></figcaption>
     </figure>
-    <img class="qr-slide__swiss" src="assets/img/swiss-ai-weeks-white.png" alt="Parte di Swiss AI Weeks" width="640" height="279">
+    <!-- The organisers' own lockup, wide enough for its small print to read. -->
+    <footer class="qr-slide__partners">
+      <img class="qr-slide__organizers" src="assets/img/organizers-white.svg?v=2" alt="Organizzato da IBSA Foundation for scientific research, IDSIA, Institute of Oncology Research, Institute for Research in Biomedicine, SUPSI" width="1368" height="84">
+      <img class="qr-slide__swiss" src="assets/img/swiss-ai-weeks-white.png?v=2" alt="Parte di Swiss AI Weeks" width="1200" height="522">
+    </footer>
   </section>
 
   <script src="assets/js/config.js?v=1"></script>
   <script src="assets/js/vendor/supabase-2.113.0.js"></script>
   <script src="assets/js/live-core.js?v=1"></script>
-  <script src="assets/js/live-viewer.js?v=1"></script>
+  <script src="assets/js/live-viewer.js?v=2"></script>
 </body>
 </html>

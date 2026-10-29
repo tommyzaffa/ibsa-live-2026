@@ -85,8 +85,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   padding: max(22px, env(safe-area-inset-top)) clamp(18px, 5vw, 80px) max(18px, env(safe-area-inset-bottom));
 }
 .audience-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-.audience-logo img { display: block; height: auto; width: clamp(140px, 22vw, 200px); }
-@media (min-width: 1100px) { .audience-logo img { width: clamp(560px, 42vw, 820px); } }
+.audience-logo { display: block; height: auto; width: clamp(150px, 16vw, 250px); }
 .audience-page .status-pill { color: #e6f6f4; background: rgba(8, 26, 44, .35); }
 
 .live-stage { flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: clamp(28px, 6vh, 70px) 0; }
@@ -145,7 +144,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 /* Phones: what most of the room will hold. */
 @media (max-width: 759px) {
   .audience-shell { padding-left: 18px; padding-right: 18px; }
-  .audience-logo img { width: 128px; }
+  .audience-logo { width: 150px; }
   .audience-page .status-pill { font-size: 10px; padding: 6px 10px; }
   .live-stage { padding: 28px 0 40px; }
   .live-stage h1 { font-size: 14px; }
@@ -167,27 +166,34 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .qr-mode { background: #0b2c3d; }
 .qr-slide {
   position: relative; min-height: 100dvh; overflow: hidden; color: #fff;
-  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: center;
-  gap: clamp(24px, 5vw, 90px); padding: clamp(28px, 5vw, 90px);
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); grid-template-rows: 1fr auto;
+  align-items: center; gap: clamp(20px, 4vh, 48px) clamp(24px, 5vw, 90px);
+  padding: clamp(24px, 5vh, 64px) clamp(28px, 5vw, 90px) clamp(18px, 3.5vh, 40px);
   background:
     linear-gradient(90deg, rgba(25, 120, 120, .96) 0%, rgba(25, 118, 121, .86) 45%, rgba(20, 97, 105, .25) 100%),
     url(../img/forum-header.jpg) right center / cover no-repeat, #1b7679;
 }
-.qr-slide__logo { width: min(100%, 620px); height: auto; display: block; margin-bottom: clamp(24px, 5vh, 54px); }
+.qr-slide__logo { width: clamp(200px, 21vw, 400px); height: auto; display: block; margin-bottom: clamp(20px, 4.5vh, 52px); }
 .qr-slide .eyebrow { color: #c7f1ea; font-size: clamp(10px, 1vw, 15px); }
-.qr-slide h1 { font-size: clamp(34px, 5vw, 86px); line-height: 1.04; letter-spacing: -.03em; font-weight: 700; margin: 14px 0 22px; }
+.qr-slide h1 { font-size: clamp(32px, min(4.6vw, 8.4vh), 86px); line-height: 1.04; letter-spacing: -.03em; font-weight: 700; margin: 12px 0 20px; }
 .qr-slide__lead { font-size: clamp(17px, 1.9vw, 32px); line-height: 1.4; margin: 0 0 6px; max-width: 26em; }
 .qr-slide__en { font-size: clamp(14px, 1.4vw, 24px); color: #c7f1ea; margin: 0 0 clamp(18px, 4vh, 40px); }
 .qr-slide__steps { margin: 0; padding-left: 1.3em; font-size: clamp(13px, 1.25vw, 21px); line-height: 1.75; color: #eafaf8; }
 .qr-slide__code { margin: 0; justify-self: center; text-align: center; }
 .qr-plate { background: #fff; padding: clamp(14px, 1.6vw, 28px); border-radius: clamp(14px, 1.5vw, 26px); line-height: 0; box-shadow: 0 30px 80px rgba(3, 20, 35, .35); }
-.qr-plate canvas { width: clamp(220px, min(30vw, 56vh), 620px); height: auto; aspect-ratio: 1; }
+.qr-plate canvas { width: clamp(220px, min(30vw, 50vh), 620px); height: auto; aspect-ratio: 1; }
 .qr-slide figcaption { margin-top: 16px; font-size: clamp(13px, 1.3vw, 22px); font-weight: 600; letter-spacing: .2px; overflow-wrap: anywhere; }
-.qr-slide__swiss { position: absolute; right: clamp(20px, 3vw, 56px); bottom: clamp(16px, 3vh, 40px); width: clamp(70px, 7vw, 130px); height: auto; opacity: .9; }
+.qr-slide__partners {
+  grid-column: 1 / -1; align-self: end; display: flex; align-items: center; justify-content: space-between;
+  gap: clamp(20px, 4vw, 60px); padding-top: clamp(14px, 2.6vh, 28px); border-top: 1px solid rgba(255, 255, 255, .28);
+}
+.qr-slide__organizers { width: min(74%, 1150px); height: auto; display: block; }
+.qr-slide__swiss { width: clamp(80px, 7.5vw, 140px); height: auto; display: block; }
 @media (max-width: 760px) {
   .qr-slide { grid-template-columns: 1fr; text-align: left; }
   .qr-slide__code { justify-self: start; }
-  .qr-slide__swiss { position: static; }
+  .qr-slide__partners { flex-direction: column; align-items: flex-start; }
+  .qr-slide__organizers { width: 100%; }
 }
 @media print {
   @page { size: A4 landscape; margin: 0; }
