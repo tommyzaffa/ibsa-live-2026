@@ -151,6 +151,14 @@ window.IBSA_PROGRAMME = {
       glossary: [],
     },
     {
+      id: 'mayya', time: '11:15', label: 'Presentazione orale · Ali Mayya',
+      title: 'Presentazione orale · Ali Mayya',
+      speaker: 'Ali Mayya, MeDiTech Institute, SUPSI (with Diego Pizzagalli and Stéphane Meystre)', direction: 'en-it',
+      context: 'Oral presentation selected from the Call for Abstracts, Session 1: Digital Twins and Personalised Medicine.',
+      terms: ['Mayya', 'Ali Mayya', 'Diego Pizzagalli', 'Stéphane Meystre', 'MeDiTech'],
+      glossary: [],
+    },
+    {
       id: 'pezzuto', time: '11:45', label: 'Simone Pezzuto',
       title: 'Simone Pezzuto · Gemelli digitali cardiaci: lo studio del cuore tramite dati e fisica',
       speaker: 'Simone Pezzuto, MBM Lab, Department of Mathematics, University of Trento; Euler Institute, USI', direction: 'en-it',
