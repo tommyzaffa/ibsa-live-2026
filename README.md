@@ -55,7 +55,11 @@ possiede il progetto del Merge: `supabase projects list` deve elencare "Merge Fi
 ## Le parole delle slide dei relatori
 
 Non vanno in `programme.js` (che è pubblico), ma si salvano dalla regia:
-scegli l'intervento, scrivi i termini nei campi, premi **«Salva per questo intervento»**.
+scegli l'intervento, apri «Nomi e contesto dell'intervento», premi **«Carica slide»** e scegli il
+.pptx o .pdf del relatore. Il browser legge il testo (e, se le slide sono immagini, lo riconosce
+con l'OCR, circa 20 secondi per 20 slide), mette sigle, nomi e termini in «Parole da riconoscere»
+e il testo delle slide nel contesto. Le slide non escono dal computer. Controlla i campi, togli
+quello che non serve e premi **«Salva per questo intervento»**.
 Ogni volta che scegli quell'intervento i campi tornano come li hai salvati. «Ripristina i campi
 originali» li cancella.
 

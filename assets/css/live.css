@@ -239,6 +239,10 @@ input:disabled, select:disabled, textarea:disabled { opacity: .65; }
 details { border-top: 1px solid var(--line); margin: 22px 0; padding-top: 16px; }
 summary { font-size: 12px; font-weight: 600; cursor: pointer; min-height: 25px; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 22px; }
+.slides-import { margin-top: 14px; padding: 14px; border: 1px dashed var(--line); border-radius: 10px; background: var(--paper); }
+.slides-import .button-small { display: inline-flex; align-items: center; margin: 0; border: 1px solid var(--navy); border-radius: 9px; font-weight: 600; cursor: pointer; }
+.slides-import .button-small:hover { background: var(--teal-soft); }
+#slides-file:disabled + .hint, .slides-import:has(#slides-file:disabled) .button-small { opacity: .45; cursor: not-allowed; }
 .save-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-top: -6px; }
 .button-small { min-height: 38px; padding: 7px 13px; font-size: 12px; border-color: var(--navy); color: var(--navy); }
 .save-row + .hint { margin-top: 8px; }

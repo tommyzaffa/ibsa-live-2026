@@ -7,7 +7,7 @@
   let session = ''; let run = null; let wakeLock = null; let discovering = false;
   try { session = sessionStorage.getItem('ibsa-live-session') || ''; } catch (_) { /* memory-only login */ }
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-  const fields = ['session', 'title', 'direction', 'device', 'minutes', 'context', 'terms', 'glossary', 'save-fields', 'reset-fields'];
+  const fields = ['session', 'title', 'direction', 'device', 'minutes', 'context', 'terms', 'glossary', 'save-fields', 'reset-fields', 'slides-file'];
   const directions = { 'en-it': { source: 'en', target: 'it' }, 'it-en': { source: 'it', target: 'en' } };
   let currentDirection = 'en-it';
   const direction = () => directions[$('direction').value] || directions['en-it'];
