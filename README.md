@@ -52,6 +52,18 @@ supabase functions deploy ibsa-live --project-ref luciaehqndzdeszdktzp --no-veri
 Lancialo dalla cartella del progetto. Serve che la CLI sia collegata all'account Supabase che
 possiede il progetto del Merge: `supabase projects list` deve elencare "Merge Film Festival".
 
+## Le parole delle slide dei relatori
+
+Non vanno in `programme.js` (che è pubblico), ma si salvano dalla regia:
+scegli l'intervento, scrivi i termini nei campi, premi **«Salva per questo intervento»**.
+Ogni volta che scegli quell'intervento i campi tornano come li hai salvati. «Ripristina i campi
+originali» li cancella.
+
+Il salvataggio resta **solo in quel browser, su quel computer e a quell'indirizzo**: salva
+dalla regia pubblicata (`https://tommyzaffa.github.io/ibsa-live-2026/regia/`), non da
+`localhost`, sul computer che userai in sala e non in una finestra anonima. Se il sito passa a
+un altro dominio, i campi salvati vanno riscritti lì.
+
 ## Il 6 novembre
 
 1. Portatile collegato via cavo a internet e alla corrente, con un'interfaccia audio USB

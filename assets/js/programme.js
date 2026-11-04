@@ -141,6 +141,16 @@ window.IBSA_PROGRAMME = {
       glossary: [],
     },
     {
+      // The words from the speaker's slides are typed in the control room and
+      // saved there, on the computer that runs it, not published here.
+      id: 'angelotti', time: '11:15', label: 'Presentazione orale · Giovanni Angelotti',
+      title: 'Presentazione orale · Giovanni Angelotti',
+      speaker: 'Giovanni Angelotti, IDSIA USI-SUPSI', direction: 'en-it',
+      context: 'Oral presentation selected from the Call for Abstracts, Session 1: Digital Twins and Personalised Medicine.',
+      terms: ['Angelotti', 'Giovanni Angelotti'],
+      glossary: [],
+    },
+    {
       id: 'pezzuto', time: '11:45', label: 'Simone Pezzuto',
       title: 'Simone Pezzuto · Gemelli digitali cardiaci: lo studio del cuore tramite dati e fisica',
       speaker: 'Simone Pezzuto, MBM Lab, Department of Mathematics, University of Trento; Euler Institute, USI', direction: 'en-it',
@@ -228,6 +238,14 @@ window.IBSA_PROGRAMME = {
       speaker: '', direction: 'en-it',
       context: 'Oral presentations selected from the Call for Abstracts, Session 2: From Models to Molecules – Protein Design and Compound Design. Add here the names and titles of the selected presentations.',
       terms: [],
+      glossary: [],
+    },
+    {
+      id: 'sgrignani', time: '16:00', label: 'Presentazione orale · Jacopo Sgrignani',
+      title: 'Presentazione orale · Jacopo Sgrignani',
+      speaker: 'Jacopo Sgrignani, Institute for Research in Biomedicine (IRB)', direction: 'en-it',
+      context: 'Oral presentation selected from the Call for Abstracts, Session 2: From Models to Molecules – Protein Design and Compound Design.',
+      terms: ['Sgrignani', 'Jacopo Sgrignani'],
       glossary: [],
     },
     {

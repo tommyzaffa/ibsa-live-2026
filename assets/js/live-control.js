@@ -7,13 +7,14 @@
   let session = ''; let run = null; let wakeLock = null; let discovering = false;
   try { session = sessionStorage.getItem('ibsa-live-session') || ''; } catch (_) { /* memory-only login */ }
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-  const fields = ['session', 'title', 'direction', 'device', 'minutes', 'context', 'terms', 'glossary'];
+  const fields = ['session', 'title', 'direction', 'device', 'minutes', 'context', 'terms', 'glossary', 'save-fields', 'reset-fields'];
   const directions = { 'en-it': { source: 'en', target: 'it' }, 'it-en': { source: 'it', target: 'en' } };
   let currentDirection = 'en-it';
   const direction = () => directions[$('direction').value] || directions['en-it'];
   function status(text, state = '') { $('status').textContent = text; $('status').dataset.state = state; }
   function controls(active) {
     for (const id of fields) $(id).disabled = active;
+    if (!active) $('save-fields').disabled = !$('session').value;
     $('start').disabled = active || discovering; $('stop').disabled = !active;
     $('logout').disabled = active; $('devices').disabled = active || discovering;
   }
@@ -47,16 +48,57 @@
   }
   function load(id) {
     const s = PROGRAMME.sessions.find(item => item.id === id);
-    if (!s) { $('title').value = ''; $('context').value = ''; $('terms').value = ''; $('glossary').value = ''; return; }
+    if (!s) { $('title').value = ''; $('context').value = ''; $('terms').value = ''; $('glossary').value = ''; showSaved(id); return; }
     $('title').value = s.title;
     $('direction').value = s.direction || 'en-it';
     $('context').value = (s.speaker ? 'Speaker: ' + s.speaker + '\n' : '') + s.context;
     $('terms').value = lines(s.terms);
     // The glossary is written English = Italian; an Italian talk reads it the other way.
     $('glossary').value = $('direction').value === 'it-en' ? flip(pairs(s.glossary)) : pairs(s.glossary);
-    currentDirection = $('direction').value; relabel();
+    // Whatever was typed and saved for this talk on this computer wins.
+    const own = saved()[id];
+    if (own) {
+      $('title').value = own.title; $('direction').value = own.direction;
+      $('context').value = own.context; $('terms').value = own.terms; $('glossary').value = own.glossary;
+    }
+    currentDirection = $('direction').value; relabel(); showSaved(id);
   }
   $('session').addEventListener('change', () => load($('session').value));
+
+  // ---- Fields saved per talk -------------------------------------------------
+  // The words from the speakers' slides are typed here once, before the day,
+  // and kept in this browser only: never published with the site.
+  const STORE = 'ibsa-live-saved-v1';
+  function saved() {
+    try { return JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch (_) { return {}; }
+  }
+  function store(all) {
+    try { localStorage.setItem(STORE, JSON.stringify(all)); return true; } catch (_) { return false; }
+  }
+  function showSaved(id) {
+    const own = id && saved()[id];
+    $('save-fields').disabled = !id || !!run;
+    $('reset-fields').hidden = !own;
+    $('saved-hint').textContent = !id ? 'Scegli un intervento in programma per salvare i suoi campi.' : own
+      ? 'Campi salvati su questo computer il ' + new Date(own.savedAt).toLocaleString('it-CH', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) + '.'
+      : 'Scrivi nei campi le parole delle slide e premi «Salva»: torneranno ogni volta che scegli questo intervento.';
+  }
+  $('save-fields').onclick = () => {
+    const id = $('session').value;
+    if (!id) return;
+    const all = saved();
+    all[id] = { title: $('title').value, direction: $('direction').value, context: $('context').value,
+      terms: $('terms').value, glossary: $('glossary').value, savedAt: Date.now() };
+    if (!store(all)) { $('saved-hint').textContent = 'Questo browser non permette di salvare. Usa una finestra normale, non anonima.'; return; }
+    showSaved(id);
+    $('save-fields').textContent = 'Salvato ✓';
+    setTimeout(() => { $('save-fields').textContent = 'Salva per questo intervento'; }, 2000);
+  };
+  $('reset-fields').onclick = () => {
+    const id = $('session').value; const all = saved();
+    if (!id || !all[id] || !confirm('Cancellare i campi salvati per questo intervento e tornare a quelli originali?')) return;
+    delete all[id]; store(all); load(id);
+  };
 
   // The control room reads the spoken language, the audience the caption one.
   function relabel() {

@@ -239,6 +239,9 @@ input:disabled, select:disabled, textarea:disabled { opacity: .65; }
 details { border-top: 1px solid var(--line); margin: 22px 0; padding-top: 16px; }
 summary { font-size: 12px; font-weight: 600; cursor: pointer; min-height: 25px; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 22px; }
+.save-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-top: -6px; }
+.button-small { min-height: 38px; padding: 7px 13px; font-size: 12px; border-color: var(--navy); color: var(--navy); }
+.save-row + .hint { margin-top: 8px; }
 .settings .actions > button { flex: 1; }
 .monitor-column { display: grid; gap: 20px; min-width: 0; }
 .card-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
