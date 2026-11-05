@@ -257,6 +257,14 @@ window.IBSA_PROGRAMME = {
       glossary: [],
     },
     {
+      id: 'bonomi', time: '16:00', label: 'Presentazione orale · Sveva Bonomi',
+      title: 'Presentazione orale · Sveva Bonomi',
+      speaker: 'Sveva Bonomi (with Tiziana Alberio, University of Insubria, Varese, and Elisa Oltra, Universidad Católica de Valencia San Vicente Mártir)', direction: 'en-it',
+      context: 'Oral presentation selected from the Call for Abstracts, Session 2: From Models to Molecules – Protein Design and Compound Design.',
+      terms: ['Bonomi', 'Sveva Bonomi', 'Tiziana Alberio', 'Elisa Oltra', 'Insubria', 'Varese', 'San Vicente Mártir'],
+      glossary: [['University of Insubria', "Università dell'Insubria"]],
+    },
+    {
       id: 'durairaj', time: '16:30', label: 'Janani Durairaj',
       title: "Janani Durairaj · Deep learning sensibile al contesto per la struttura, l'interazione e la progettazione delle proteine",
       speaker: 'Janani (Jay) Durairaj, Department of Computational Biology, University of Lausanne', direction: 'en-it',
