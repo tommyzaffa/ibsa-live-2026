@@ -113,6 +113,12 @@
     const far = document.hidden || bottom - frame.scrollTop > frame.clientHeight;
     frame.scrollTo({ top: bottom, behavior: glide && !far ? 'smooth' : 'instant' });
   }
+  // On phones the window takes whatever height the page leaves it, and that
+  // moves when a new title wraps differently or the browser's bars come and
+  // go: keep the newest line in view instead of waiting for the next word.
+  if (window.ResizeObserver) new ResizeObserver(() => {
+    const frame = $('caption-window'); frame.scrollTop = frame.scrollHeight;
+  }).observe($('caption-window'));
   function render() {
     if (!snapshot) return;
     speak(copy[snapshot.language] ? snapshot.language : 'it');

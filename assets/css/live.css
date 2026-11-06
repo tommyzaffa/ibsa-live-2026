@@ -151,9 +151,18 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .audience-shell { padding-left: 18px; padding-right: 18px; }
   .audience-logo img { width: 150px; }
   .audience-page .status-pill { font-size: 10px; padding: 6px 10px; }
-  .live-stage { padding: 28px 0 40px; }
+  .live-stage { padding: 24px 0 28px; }
   .live-stage h1 { font-size: 14px; }
-  .caption-window { font-size: 26px; --lh: 1.38; }
+  /* A phone held upright has room for far more than four lines: the window
+     takes all the height the page leaves it, never less than four lines.
+     contain:size keeps the (very long) paragraph from ever sizing the window
+     itself; the fade is measured in lines, not in a share of the height. */
+  .caption-window {
+    font-size: 26px; --lh: 1.38;
+    flex: 1 1 0; height: auto; min-height: calc(4 * var(--lh) * 1em); contain: size;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 calc(1.5 * var(--lh) * 1em));
+    mask-image: linear-gradient(to bottom, transparent 0, #000 calc(1.5 * var(--lh) * 1em));
+  }
   .audience-page[data-size=large] .caption-window { font-size: 31px; }
   .audience-footer { grid-template-columns: 1fr; gap: 12px; padding-top: 14px; }
   .viewer-controls > * { flex: 1; }
