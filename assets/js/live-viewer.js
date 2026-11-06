@@ -163,17 +163,21 @@
     const tokens = script.split(/(?<= )/);
     let said = ''; let at = 0; let revision = 1;
     connected = true;
+    // Soniox settles two to four words at a time. At this pace the preview runs
+    // at about 130 words a minute, a speaker's pace, with a breath after each
+    // sentence (it used to run nearly twice as fast as anyone talks).
     const step = () => {
       if (at >= tokens.length) { at = 0; said = ''; }
-      // Soniox settles a few words at a time, roughly once a second.
-      const burst = 3 + Math.floor(Math.random() * 5);
-      said += tokens.slice(at, at + burst).join(''); at += burst;
+      const burst = 2 + Math.floor(Math.random() * 3);
+      const chunk = tokens.slice(at, at + burst).join('');
+      said += chunk; at += burst;
       accept({ id: room, revision: ++revision, state: 'live', language: 'it', updated_at: new Date().toISOString(),
         title: 'Giovanna Guidoboni · Quando la fisica incontra i dati: gemelli digitali per la medicina personalizzata',
         translated: said.slice(-1400) });
       pill(words.preview, 'live');
+      setTimeout(step, /[.!?]\s*$/.test(chunk) ? 2100 : 1300);
     };
-    step(); setInterval(step, 1100);
+    step();
     void keepAwake();
     return;
   }
