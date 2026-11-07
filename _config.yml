@@ -1,5 +1,4 @@
-# GitHub Pages publishes the two pages and their assets, never the server code.
+# GitHub Pages publishes the page and its assets, not the repository notes.
 exclude:
-  - supabase
   - README.md
   - .gitignore
